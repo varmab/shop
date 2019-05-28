@@ -12,21 +12,21 @@ class Header extends Component {
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item active">
-                                <a className="nav-link" href="index.html">Home
+                                <a className="nav-link" href="/">Home
               <span className="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="about.html">About</a>
+                                <a className="nav-link" href="/about">About</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="contact.html">Contact</a>
+                                <a className="nav-link" href="/contact">Contact</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="login.html">Login</a>
+                                <a className="nav-link" href="/login">Login</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="register.html">Register</a>
+                                <a className="nav-link" href="/register">Register</a>
                             </li>
                         </ul>
                     </div>
