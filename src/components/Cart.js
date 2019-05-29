@@ -1,37 +1,35 @@
 import React, { Component } from 'react'
+import Item from './Item';
 
 class Cart extends Component {
+    constructor(props){
+        super(props);
+
+        this.state={
+            cartItems:props.items
+        }
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setState({
+            cartItems:newProps.items
+        })
+    }
+
+    removeFromCart=(item)=>{
+        console.log(item)
+        this.props.removeFromCart(item)
+    }
+
     render() {
         return (
-            <div class="row">
+            <div className="row">
                 <h1><center>Cart</center></h1>
-                <div class="col-12">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="item.html">Item One</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                        </div>
-                        <div class="card-footer">
-                            <button>Remove</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="item.html">Item Two</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                        </div>
-                        <div class="card-footer">
-                            <button>Remove</button>
-                        </div>
-                    </div>
-                </div>
+                {
+                    this.state.cartItems.map((cartItem)=>{
+                        return <Item key={cartItem.id} item={cartItem} isCart={true} removeFromCart={this.removeFromCart}/>
+                    })
+                }
             </div>
         )
     }
