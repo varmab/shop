@@ -32,7 +32,7 @@ class Item extends Component {
                         <h5>${this.state.item.price}</h5>
                         {
                             (this.props.isCart==false) ? (
-                            <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
                             ):
                             (
                                 <p>Qty:{this.state.item.qty}</p>

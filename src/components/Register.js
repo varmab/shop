@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class Register extends Component {
     constructor() {
@@ -7,25 +7,18 @@ class Register extends Component {
 
         this.state = {
             user: {
-                name: '',
-                phone: '',
+                firstName: '',
+                lastName: '',
                 email: '',
                 password: '',
+                confirmPassword: '',
                 agreeToTerms: false
-            },
-            touched: {
-                name: false,
-                phone: false,
-                email: false,
-                password: false
             },
             registrationCompleted: false
         }
 
         this.onChange = this.onChange.bind(this);
-        this.onBlur = this.onBlur.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.validate = this.validate.bind(this);
     }
 
     onChange(e) {
@@ -43,44 +36,6 @@ class Register extends Component {
         this.setState({
             user
         })
-    }
-
-    onBlur(e) {
-        let touched = Object.assign({}, this.state.touched);
-        touched[e.target.name] = true;
-        this.setState({
-            touched
-        })
-    }
-
-    validate() {
-        const errors = {};
-        const { user } = this.state;
-
-        if (!user.email) {
-            errors.email = 'Email is required';
-        }
-
-        if (!user.name) {
-            errors.name = 'Name is required';
-        }
-
-        if (!user.phone) {
-            errors.phone = 'Phone is required';
-        }
-
-        if (!user.password) {
-            errors.password = 'Password is required';
-        }
-
-        if (!user.agreeToTerms) {
-            errors.agreeToTerms = 'You must agree to terms';
-        }
-
-        return {
-            errors,
-            isValid: Object.keys(errors).length === 0
-        };
     }
 
     onSubmit(e) {
@@ -111,32 +66,22 @@ class Register extends Component {
             .then(resp => resp.json())
             .then(user => {
                 console.log(JSON.stringify(user))
-                alert("Thank you, You have registered successfully. We will email you confirmation shortly.")
-
+                alert("Thank you, You have registered successfully.")
                 localStorage.setItem("token", user.token)
-
-                this.props.onRegistrationComplete(true)
-
                 this.setState({
                     user: {
-                        name: '',
-                        phone: '',
+                        firstName: '',
+                        lastName: '',
                         email: '',
                         password: '',
+                        confirmPassword: '',
                         agreeToTerms: false
-                    },
-                    touched: {
-                        name: false,
-                        phone: false,
-                        email: false,
-                        password: false
                     },
                     registrationCompleted: true
                 })
             })
             .catch((err) => {
                 console.log(JSON.stringify(err))
-                this.props.onRegistrationComplete(false)
                 alert("Failed to register, Please try again");
             })
 
@@ -147,16 +92,11 @@ class Register extends Component {
 
         if (this.state.registrationCompleted) {
             return (
-                <div>
-                    <h3>Thank you, You're successfully registered</h3>
-                    <Link to="/dashboard">Go to Dashboard</Link>
-                </div>
+                <Redirect to="/"/>
             )
         }
         else {
-            const { user, touched } = this.state;
-            const { errors, isValid } = this.validate();
-
+            const { user } = this.state;
             return (
                 <div className="container">
                     <div className="card card-register mx-auto mt-5">
@@ -167,13 +107,13 @@ class Register extends Component {
                                     <div className="form-row">
                                         <div className="col-md-6">
                                             <div className="form-label-group">
-                                                <input type="text" id="firstName" className="form-control" placeholder="First name" required="required" autofocus="autofocus" />
+                                                <input type="text" id="firstName" name="firstName" onChange={this.onChange} value={this.state.firstName} className="form-control" placeholder="First name" required="required" autofocus="autofocus" />
                                                 <label for="firstName">First name</label>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-label-group">
-                                                <input type="text" id="lastName" className="form-control" placeholder="Last name" required="required" />
+                                                <input type="text" id="lastName" name="lastName" onChange={this.onChange} value={this.state.lastName} className="form-control" placeholder="Last name" required="required" />
                                                 <label for="lastName">Last name</label>
                                             </div>
                                         </div>
@@ -181,7 +121,7 @@ class Register extends Component {
                                 </div>
                                 <div className="form-group">
                                     <div className="form-label-group">
-                                        <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required="required" />
+                                        <input type="email" id="inputEmail" name="email" onChange={this.onChange} value={this.state.email} className="form-control" placeholder="Email address" required="required" />
                                         <label for="inputEmail">Email address</label>
                                     </div>
                                 </div>
@@ -189,13 +129,13 @@ class Register extends Component {
                                     <div className="form-row">
                                         <div className="col-md-6">
                                             <div className="form-label-group">
-                                                <input type="password" id="inputPassword" className="form-control" placeholder="Password" required="required" />
+                                                <input type="password" id="inputPassword" name="password" onChange={this.onChange} value={this.state.password} className="form-control" placeholder="Password" required="required" />
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-label-group">
-                                                <input type="password" id="confirmPassword" className="form-control" placeholder="Confirm password" required="required" />
+                                                <input type="password" id="confirmPassword" name="confirmPassword" onChange={this.onChange} value={this.state.confirmPassword} className="form-control" placeholder="Confirm password" required="required" />
                                                 <label for="confirmPassword">Confirm password</label>
                                             </div>
                                         </div>
@@ -204,8 +144,8 @@ class Register extends Component {
                                 <a className="btn btn-primary btn-block" href="login.html">Register</a>
                             </form>
                             <div className="text-center">
-                                <a className="d-block small mt-3" href="login.html">Login Page</a>
-                                <a className="d-block small" href="forgot-password.html">Forgot Password?</a>
+                                <a className="d-block small mt-3" href="/login">Login Page</a>
+                                <a className="d-block small" href="/">Forgot Password?</a>
                             </div>
                         </div>
                     </div>

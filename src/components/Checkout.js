@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class Checkout extends Component{
     constructor(props){
-        super(props)
+        super()
 
         this.state={
             orderTotal:props.orderTotal
@@ -19,7 +19,7 @@ class Checkout extends Component{
         return(
             <div>
                 <h1>Checkout</h1>
-                <p>Total:Rs {this.state.orderTotal}</p>
+                <p>Total: ${this.state.orderTotal}</p>
                 <button>Place Order</button>
             </div>
         )

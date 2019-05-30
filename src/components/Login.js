@@ -74,13 +74,13 @@ class Login extends Component {
                         <form>
                             <div className="form-group">
                                 <div className="form-label-group">
-                                    <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required="required" autofocus="autofocus" />
+                                    <input type="email" id="inputEmail" name="email" onChange={this.onChange} value={this.state.email} className="form-control" placeholder="Email address" required="required" autofocus="autofocus" />
                                     <label for="inputEmail">Email address</label>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <div className="form-label-group">
-                                    <input type="password" id="inputPassword" className="form-control" placeholder="Password" required="required" />
+                                    <input type="password" id="inputPassword" name="password" onChange={this.onChange} value={this.state.password}  className="form-control" placeholder="Password" required="required" />
                                     <label for="inputPassword">Password</label>
                                 </div>
                             </div>
@@ -95,8 +95,8 @@ class Login extends Component {
                             <a className="btn btn-primary btn-block" href="index.html">Login</a>
                         </form>
                         <div className="text-center">
-                            <a className="d-block small mt-3" href="register.html">Register an Account</a>
-                            <a className="d-block small" href="forgot-password.html">Forgot Password?</a>
+                            <a className="d-block small mt-3" href="/register">Register an Account</a>
+                            <a className="d-block small" href="/">Forgot Password?</a>
                         </div>
                     </div>
                 </div>

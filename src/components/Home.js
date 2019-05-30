@@ -8,34 +8,24 @@ class Home extends Component {
     constructor(){
         super();
 
-        var items=[
-            {
-                id:1,
-                name:"Shirt",
-                price:100
-            },
-            {
-                id:2,
-                name:"Short",
-                price:100
-            },
-            {
-                id:3,
-                name:"Pant",
-                price:100
-            },
-            {
-                id:4,
-                name:"Saree",
-                price:100
-            }
-        ];
-
         this.state={
-            items:items,
+            items:[],
             cartItems:[],
             orderTotal:0
         }
+    }
+
+    componentDidMount(){
+        fetch('/api/shop/items')
+        .then(response=>response.json())
+        .then((items)=>{
+            this.setState({
+                items:items
+            })
+        })
+        .catch((err)=>{
+            alert("Failed to load items")
+        })
     }
 
     addToCart=(item)=>{
