@@ -27,7 +27,7 @@ class Cart extends Component {
                 <h1><center>Cart</center></h1>
                 {
                     this.state.cartItems.map((cartItem)=>{
-                        return <Item key={cartItem.id} item={cartItem} isCart={true} removeFromCart={this.removeFromCart}/>
+                        return <Item key={cartItem._id} item={cartItem} isCart={true} removeFromCart={this.removeFromCart}/>
                     })
                 }
             </div>

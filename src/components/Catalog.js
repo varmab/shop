@@ -25,7 +25,7 @@ class Catalog extends Component {
             <div className="row">
                 {
                     this.state.items.map((item)=>{
-                        return <Item key={item.id} item={item} addToCart={this.addToCart} isCart={false}/>
+                        return <Item key={item._id} item={item} addToCart={this.addToCart} isCart={false}/>
                     })
                 }
             </div>

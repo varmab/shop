@@ -11,6 +11,7 @@ import AboutPage from './containers/AboutPage';
 import LoginPage from './containers/LoginPage';
 import RegisterPage from './containers/RegisterPage';
 import ContactPage from './containers/ContactPage';
+import MyOrdersPage from './containers/MyOrdersPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" component={LoginPage}/>
           <Route path="/register" component={RegisterPage}/>
           <Route path="/contact" component={ContactPage}/>
+          <Route path="/myorders" component={MyOrdersPage}/>
         </Switch>
       </Router>
     </div>

@@ -31,10 +31,10 @@ class Home extends Component {
     addToCart=(item)=>{
         console.log(item);
 
-        item.qty=1;
+        
 
         var isItemExists=this.state.cartItems.some((cartItem)=>{
-            return item.id==cartItem.id
+            return item._id==cartItem._id
         })
 
         if(isItemExists){
@@ -43,7 +43,7 @@ class Home extends Component {
             this.setState({
                 cartItems:[
                     ...this.state.cartItems.filter((cartItem)=>{
-                        return item.id!=cartItem.id;
+                        return item._id!=cartItem._id;
                     }),
                     item
                 ]
@@ -56,6 +56,7 @@ class Home extends Component {
             })
         }
         else {
+            item.qty=1;
             this.setState({
                 cartItems:[
                     ...this.state.cartItems,
@@ -76,7 +77,7 @@ class Home extends Component {
         console.log(item)
         this.setState({
             cartItems:this.state.cartItems.filter((cartItem)=>{
-                return cartItem.id!=item.id
+                return cartItem._id!=item._id
             })
         },()=>{
             this.setState({
