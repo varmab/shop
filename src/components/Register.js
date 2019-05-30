@@ -141,7 +141,7 @@ class Register extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <a className="btn btn-primary btn-block" href="login.html">Register</a>
+                                <button onClick={this.onSubmit}>Register</button>
                             </form>
                             <div className="text-center">
                                 <a className="d-block small mt-3" href="/login">Login Page</a>

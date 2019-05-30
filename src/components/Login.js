@@ -92,7 +92,7 @@ class Login extends Component {
                                     </label>
                                 </div>
                             </div>
-                            <a className="btn btn-primary btn-block" href="index.html">Login</a>
+                            <button onClick={this.onSubmit}>Login</button>
                         </form>
                         <div className="text-center">
                             <a className="d-block small mt-3" href="/register">Register an Account</a>
