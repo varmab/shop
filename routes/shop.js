@@ -57,8 +57,10 @@ router.route("/orders")
             res.status(500).send(err)
         })
     })
-// router.post("/sendmail", (req,res)=>{
+// router.post("/api/users/sendmail", (req,res)=>{
+    //sendgrid api to send emails
 
+    
 // })
 
 module.exports=router;

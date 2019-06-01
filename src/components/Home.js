@@ -16,7 +16,11 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        fetch('/api/shop/items')
+        fetch('/api/shop/items',{
+            headers:{
+                "x-access-token":localStorage.getItem("token")
+            }
+        })
         .then(response=>response.json())
         .then((items)=>{
             this.setState({
