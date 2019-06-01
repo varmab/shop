@@ -6,7 +6,7 @@ Clone or Download all files and run following commands
 
 1. Make sure your mongodb is running.
 
-2. Download all files
+2. Download all files from https://github.com/varmab/shop/archive/master.zip
 
 3. Run following commands to install development tools & necessary npms to run backend
 
